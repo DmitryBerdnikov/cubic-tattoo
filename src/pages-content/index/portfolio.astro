@@ -1,0 +1,79 @@
+---
+import portfolio1Image from '../../assets/portfolio/1.jpg'
+import portfolio2Image from '../../assets/portfolio/2.jpg'
+import portfolio3Image from '../../assets/portfolio/3.jpg'
+import portfolio4Image from '../../assets/portfolio/4.jpg'
+import styles from './portfolio.module.css'
+---
+
+<div class={styles.main} id="portfolio">
+	<div class={styles.images}>
+		<div class={styles.content}>
+			<h2 class={styles.title}>Мои работы</h2>
+			<p class={styles.text}>
+				Я делаю татуировки, которые будут смотреться хорошо не только сейчас, но
+				и через года.
+			</p>
+		</div>
+		<div class={styles.imageContainer}>
+			<img
+				class={styles.image}
+				src={portfolio3Image.src}
+				alt=""
+				width="354"
+				height="472"
+				loading="lazy"
+			/>
+		</div>
+		<div class={styles.imageContainer}>
+			<img
+				class={styles.image}
+				src={portfolio4Image.src}
+				alt=""
+				width="354"
+				height="472"
+				loading="lazy"
+			/>
+		</div>
+		<div class={styles.imageContainer}>
+			<img
+				class={styles.image}
+				src={portfolio4Image.src}
+				alt=""
+				width="354"
+				height="472"
+				loading="lazy"
+			/>
+		</div>
+		<div class={styles.imageContainer}>
+			<img
+				class={styles.image}
+				src={portfolio2Image.src}
+				alt=""
+				width="354"
+				height="472"
+				loading="lazy"
+			/>
+		</div>
+		<div class={styles.imageContainer}>
+			<img
+				class={styles.image}
+				src={portfolio1Image.src}
+				alt=""
+				width="354"
+				height="472"
+				loading="lazy"
+			/>
+		</div>
+		<div class={styles.imageContainer}>
+			<img
+				class={styles.image}
+				src={portfolio3Image.src}
+				alt=""
+				width="354"
+				height="472"
+				loading="lazy"
+			/>
+		</div>
+	</div>
+</div>

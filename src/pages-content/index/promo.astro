@@ -1,0 +1,40 @@
+---
+import promoImage from '../../assets/promo.jpg'
+import logoImage from '../../assets/logo.png'
+import styles from './promo.module.css'
+---
+
+<div class={styles.main}>
+	<div class={styles.promoImageContainer}>
+		<img
+			class={styles.logo}
+			src={logoImage.src}
+			alt=""
+			fetchpriority="high"
+			width="180"
+			height="172.45"
+		/>
+		<img
+			class={styles.promoImage}
+			src={promoImage.src}
+			alt=""
+			fetchpriority="high"
+			width="420"
+			height="630"
+		/>
+	</div>
+	<div class={styles.greeting}>
+		<header class={styles.header}>
+			<!-- <a class={styles.headerLink} href="/about">Моя история</a> -->
+			<a class={styles.headerLink} href="/#contacts">Контакты</a>
+		</header>
+		<div class={styles.greetingContent}>
+			<p class={styles.greetingText}>Привет! Я, Даша Кубик. Татуирую с 2017 года</p>
+			<h1 class={styles.mainTitle}>
+				Тату мастер из Краснодара. Работаю в стиле черно-белой татуировке,
+				реализм
+			</h1>
+			<a class={styles.link} href="/#portfolio">Посмотреть работы</a>
+		</div>
+	</div>
+</div>

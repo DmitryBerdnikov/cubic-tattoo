@@ -1,0 +1,87 @@
+.main {
+    padding: 120px 20px;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo {
+    filter: invert(1);
+    margin-bottom: 48px;
+}
+
+.content {
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 24px;
+    margin: 0 0 16px 0;
+
+    @media (width >= 768px) {
+        font-size: 36px;
+    }
+}
+
+.text {
+    margin: 0 auto 32px auto;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 18px;
+    line-height: 1.4;
+    max-width: 320px;
+    margin: 0 auto 32px;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.linkTelegram {
+    background-color: #101110;
+    border: 0;
+    padding: 14px 16px;
+    min-width: 180px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.6;
+    }
+}
+
+.linkWhatsapp {
+    background-color: #fff;
+    padding: 14px 16px;
+    min-width: 180px;
+    font-size: 14px;
+    border: 1px solid currentColor;
+    color: #101110;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.6;
+    }
+}

@@ -1,0 +1,25 @@
+---
+import logoImage from '../../assets/logo.png'
+import styles from './contacts.module.css'
+---
+
+<div class={styles.main} id="contacts">
+	<div class={styles.content}>
+		<img
+			class={styles.logo}
+			src={logoImage.src}
+			alt=""
+			width="180"
+			height="172.45"
+			loading="lazy"
+		/>
+		<h2 class={styles.title}>Контакты</h2>
+		<p class={styles.text}>
+			Бесплатно проконсультирую по&nbsp;любым вопросам татуировки
+		</p>
+		<div class={styles.links}>
+			<!-- <a class={styles.linkTelegram} href="#">Написать в telegram</a> -->
+			<a class={styles.linkWhatsapp} href="https://api.whatsapp.com/send?phone=79102286772">Написать в whatsapp</a>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,60 @@
+.main {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.images {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content {
+    position: relative;
+    padding: 60px 20px;
+    bottom: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media (width >= 576px) {
+        width: 50%;
+        padding: 60px 48px;
+    }
+}
+
+.title {
+    margin: 0 0 16px 0;
+    font-size: 24px;
+
+    @media (width >= 768px) {
+        font-size: 36px;
+    }
+}
+
+.text {
+    max-width: 440px;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.imageContainer {
+    overflow: hidden;
+
+    @media (width >= 576px) {
+        width: 25%;
+    }
+}
+
+.image {
+    object-fit: cover;
+    width: 100%;
+    display: block;
+    transition: transform 0.6s ease-in-out;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}

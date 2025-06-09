@@ -1,0 +1,43 @@
+.header {
+    padding: 12px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logoLink {
+    display: inline-block;
+}
+
+.logo {
+    filter: invert(1);
+    height: 90px;
+    width: auto;
+}
+
+.content {
+    padding: 40px 0;
+    max-width: 900px;
+    margin: 0 auto;
+
+    @media (width >= 768px) {
+        padding: 60px 0;
+    }
+}
+
+.title {
+    font-size: 36px;
+    margin: 0;
+}
+
+.images {
+    display: flex;
+    gap: 8px;
+}
+
+.image {
+    width: calc(50% - 4px);
+}
