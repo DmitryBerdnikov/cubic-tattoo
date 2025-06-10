@@ -1,43 +1,270 @@
 ---
 import image from '../assets/image.jpg'
+import image1 from '../assets/1.jpg'
+import image2 from '../assets/2.jpg'
+import image3 from '../assets/3.jpg'
+import image4 from '../assets/4.jpg'
 ---
+
+<div class="background-hearts" id="hearts-container" style="display: none;">
+	{
+		Array(50)
+			.fill(0)
+			.map((_, i) => (
+				<span
+					class="floating-heart"
+					style={`--x: ${Math.random() * 100}%; --y: ${Math.random() * 100}%; --direction: ${Math.random() > 0.5 ? 1 : -1}; --speed: ${5 + Math.random() * 10}s;`}
+				>
+					❤️
+				</span>
+			))
+	}
+</div>
 
 <div class="container">
 	<img
-		class="image"
+		class="image main-image"
 		src={image.src}
 		alt=""
 		fetchpriority="high"
 		width="385"
 		height="427"
 	/>
+	<div class="additional-images" id="additionalImages" style="display: none;">
+		<img
+			class="image additional-image"
+			src={image1.src}
+			alt=""
+			width="385"
+			height="427"
+		/>
+		<img
+			class="image additional-image"
+			src={image2.src}
+			alt=""
+			width="385"
+			height="427"
+		/>
+		<img
+			class="image additional-image"
+			src={image3.src}
+			alt=""
+			width="385"
+			height="427"
+		/>
+		<img
+			class="image additional-image"
+			src={image4.src}
+			alt=""
+			width="385"
+			height="427"
+		/>
+	</div>
 	<h1>Даша Кубик</h1>
-	<p>Невероятно красивая девушка и отличный тату мастер</p>
+	<p class="description">
+		Тату мастер с огнем внутри. А еще Даша красивая, добрая, веселая,
+		жизнерадостная и вообще прекрасная девушка, жена и мама.
+	</p>
+	<button class="button" id="button">Нажми на меня</button>
 </div>
 
 <style>
+	.background-hearts {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		z-index: -1;
+		overflow: hidden;
+	}
+
+	.floating-heart {
+		position: absolute;
+		font-size: 20px;
+		opacity: 0.3;
+		animation: float var(--speed) infinite linear;
+		left: var(--x);
+		top: var(--y);
+		filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+	}
+
+	@keyframes float {
+		0% {
+			transform: translate(0, 0) rotate(0deg);
+		}
+		25% {
+			transform: translate(calc(100px * var(--direction)), 50px) rotate(90deg);
+		}
+		50% {
+			transform: translate(calc(50px * var(--direction)), 100px) rotate(180deg);
+		}
+		75% {
+			transform: translate(calc(-50px * var(--direction)), 50px) rotate(270deg);
+		}
+		100% {
+			transform: translate(0, 0) rotate(360deg);
+		}
+	}
+
 	.container {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		min-height: 100vh;
 		padding: 60px 20px;
+		position: relative;
 	}
 
 	.image {
 		border-radius: 10px;
-		margin-bottom: 24px;
-		max-width: 100%;
+		margin-bottom: 16px;
+		max-width: 280px;
 		height: auto;
+		object-fit: cover;
+		transition: opacity 1s ease;
+	}
+
+	.main-image {
+		opacity: 0;
+		transform: translateY(30px);
+		animation: fadeIn 2s ease forwards;
+	}
+
+	.additional-images {
+		position: absolute;
+		top: 60px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 280px;
+		height: 427px;
+	}
+
+	.additional-image {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		border-radius: 10px;
+		object-fit: cover;
+		transition: opacity 1.5s ease;
+		pointer-events: none;
+	}
+
+	.additional-image.show {
+		opacity: 1;
+		z-index: 1;
+	}
+
+	.description {
+		max-width: 410px;
+		margin: 0 auto;
+		opacity: 0;
+		transform: translateY(30px);
+		animation: fadeIn 2s ease forwards 1.5s;
+		transition: opacity 1s ease;
 	}
 
 	h1 {
 		margin: 0;
-		margin-bottom: 12px;
+		margin-bottom: 4px;
+		opacity: 0;
+		transform: translateY(30px);
+		animation: fadeIn 2s ease forwards 0.8s;
+		transition: opacity 1s ease;
 	}
 
 	p {
 		margin: 0;
 	}
+
+	.button {
+		margin-top: 20px;
+		padding: 12px 24px;
+		font-size: 14px;
+		font-family: 'Arial', sans-serif;
+		font-weight: 700;
+		background-color: #1a1a1a;
+		color: white;
+		border: none;
+		border-radius: 25px;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+		cursor: pointer;
+		transition: all 0.3s ease;
+		opacity: 0;
+		transform: translateY(30px);
+		animation: fadeIn 2s ease forwards 8s;
+	}
+
+	.button:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+	}
+
+	.button:active {
+		transform: translateY(1px);
+	}
+
+	.hideElement {
+		opacity: 0 !important;
+		transition: opacity 1s ease;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
 </style>
+
+<script>
+	const button = document.getElementById('button')
+	const heartsContainer = document.getElementById('hearts-container')
+	const additionalImages = document.getElementById('additionalImages')
+	const mainImage = document.querySelector('.main-image') as HTMLImageElement
+	const title = document.querySelector('h1') as HTMLElement
+	const description = document.querySelector('.description') as HTMLElement
+	const images = document.querySelectorAll('.additional-image')
+	let currentImageIndex = 0
+
+	function showNextImage() {
+		images.forEach((img) => img.classList.remove('show'))
+		images[currentImageIndex].classList.add('show')
+		currentImageIndex = (currentImageIndex + 1) % images.length
+	}
+
+	function hideElements() {
+		if (title) title.classList.add('hideElement')
+		if (description) description.classList.add('hideElement')
+		if (mainImage) mainImage.classList.add('hideElement')
+	}
+
+	if (button && heartsContainer && additionalImages && mainImage) {
+		button.addEventListener('click', () => {
+			heartsContainer.style.display = 'block'
+			button.style.display = 'none'
+			additionalImages.style.display = 'block'
+
+			// Hide elements with smooth transition
+			setTimeout(() => {
+				hideElements()
+				setTimeout(() => {
+					if (mainImage) mainImage.style.display = 'none'
+					// Show first image immediately
+					showNextImage()
+
+					// Start the cycle of showing images
+					setInterval(showNextImage, 3000)
+				}, 1000)
+			}, 100)
+		})
+	}
+</script>
