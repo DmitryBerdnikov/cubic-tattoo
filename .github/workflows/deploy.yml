@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -20,6 +20,12 @@ jobs:
 
       - name: Build Astro
         run: npm run build
+
+      # Добавляем .nojekyll и проверяем CNAME
+      - name: Prepare deployment
+        run: |
+          touch ./dist/.nojekyll
+          [ -f ./public/CNAME ] && cp ./public/CNAME ./dist/CNAME || echo "No CNAME found"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
