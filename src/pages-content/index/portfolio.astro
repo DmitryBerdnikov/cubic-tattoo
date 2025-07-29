@@ -1,79 +1,129 @@
 ---
-import portfolio1Image from '../../assets/portfolio/1.jpg'
-import portfolio2Image from '../../assets/portfolio/2.jpg'
-import portfolio3Image from '../../assets/portfolio/3.jpg'
-import portfolio4Image from '../../assets/portfolio/4.jpg'
+import blackBerserkImage from '../../assets/portfolio/black-berserk.jpg'
+import blackEagle1Image from '../../assets/portfolio/black-eagle-1.jpg'
+import blackEagle2Image from '../../assets/portfolio/black-eagle-2.jpg'
+import blackEagle3Image from '../../assets/portfolio/black-eagle-3.jpg'
+import blackGargona from '../../assets/portfolio/black-gargona.jpg'
+import blackMedusa from '../../assets/portfolio/black-medusa.jpg'
+import blackGirlCat from '../../assets/portfolio/black-girl-cat.jpg'
+import blackGirlFace from '../../assets/portfolio/black-girl-face.jpg'
+import blackGirlMask from '../../assets/portfolio/black-girl-mask.jpg'
+import blackGirlSmile from '../../assets/portfolio/black-girl-smile.jpg'
+import blackGreece from '../../assets/portfolio/black-greece.jpg'
+import blackNun from '../../assets/portfolio/black-nun.jpg'
+import blackScullBack from '../../assets/portfolio/black-scull-back.jpg'
+import blackWitch from '../../assets/portfolio/black-witch.jpg'
+import colorMask from '../../assets/portfolio/color-mask.jpg'
+import colorOwl from '../../assets/portfolio/color-owl.jpg'
+import colorScull from '../../assets/portfolio/color-scull.jpg'
+
+import 'swiper/css'
 import styles from './portfolio.module.css'
+
+const blackImages = [
+	blackBerserkImage,
+	blackEagle1Image,
+	blackEagle2Image,
+	blackEagle3Image,
+	blackGargona,
+	blackMedusa,
+	blackGirlCat,
+	blackGirlFace,
+	blackGirlMask,
+	blackGirlSmile,
+	blackGreece,
+	blackNun,
+	blackScullBack,
+	blackWitch,
+]
+
+const colorImages = [colorMask, colorOwl, colorScull]
 ---
 
 <div class={styles.main} id="portfolio">
-	<div class={styles.images}>
-		<div class={styles.content}>
-			<h2 class={styles.title}>Мои работы</h2>
-			<p class={styles.text}>
-				Я делаю татуировки, которые будут смотреться хорошо не только сейчас, но
-				и через года.
-			</p>
+	<div class={styles.titleContainer}>
+		<h2 class={styles.title}>Мои работы</h2>
+		<p class={styles.text}>
+			Делаю татуировки, которые будут смотреться хорошо не только сейчас, но и
+			через года
+		</p>
+	</div>
+
+	<div class={styles.section}>
+		<h3 class={styles.sectionTitle + ' ' + styles.blackAndWhite}>
+			Черно-белая татуировка
+		</h3>
+
+		<div class:list={['portfolio-images', styles.images]}>
+			<div class:list={['swiper-wrapper', styles.imagesInner]}>
+				{
+					blackImages.map((image) => (
+						<div
+							class:list={[
+								styles.imageContainer,
+								'portfolio-image-slide',
+								'swiper-slide',
+							]}
+						>
+							<img
+								class={styles.image}
+								src={image.src}
+								alt=""
+								width="354"
+								height="472"
+								loading="lazy"
+							/>
+						</div>
+					))
+				}
+			</div>
 		</div>
-		<div class={styles.imageContainer}>
-			<img
-				class={styles.image}
-				src={portfolio3Image.src}
-				alt=""
-				width="354"
-				height="472"
-				loading="lazy"
-			/>
-		</div>
-		<div class={styles.imageContainer}>
-			<img
-				class={styles.image}
-				src={portfolio4Image.src}
-				alt=""
-				width="354"
-				height="472"
-				loading="lazy"
-			/>
-		</div>
-		<div class={styles.imageContainer}>
-			<img
-				class={styles.image}
-				src={portfolio4Image.src}
-				alt=""
-				width="354"
-				height="472"
-				loading="lazy"
-			/>
-		</div>
-		<div class={styles.imageContainer}>
-			<img
-				class={styles.image}
-				src={portfolio2Image.src}
-				alt=""
-				width="354"
-				height="472"
-				loading="lazy"
-			/>
-		</div>
-		<div class={styles.imageContainer}>
-			<img
-				class={styles.image}
-				src={portfolio1Image.src}
-				alt=""
-				width="354"
-				height="472"
-				loading="lazy"
-			/>
-		</div>
-		<div class={styles.imageContainer}>
-			<img
-				class={styles.image}
-				src={portfolio3Image.src}
-				alt=""
-				width="354"
-				height="472"
-				loading="lazy"
-			/>
+	</div>
+
+	<div class={styles.section}>
+		<h3 class={styles.sectionTitle + ' ' + styles.colored}>
+			Цветная татуировка
+		</h3>
+		<div class:list={['portfolio-images', styles.images]}>
+			<div class:list={['swiper-wrapper', styles.imagesInner]}>
+				{
+					colorImages.map((image) => (
+						<div
+							class:list={[
+								styles.imageContainer,
+								'portfolio-image-slide',
+								'swiper-slide',
+							]}
+						>
+							<img
+								class={styles.image}
+								src={image.src}
+								alt=""
+								width="354"
+								height="472"
+								loading="lazy"
+							/>
+						</div>
+					))
+				}
+			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+	import Swiper from 'swiper'
+
+	if (matchMedia('(max-width: 768px)').matches) {
+		const slidersContainers = document.querySelectorAll('.portfolio-images')
+
+		slidersContainers.forEach((container) => {
+			new Swiper(container as HTMLElement, {
+				slidesPerView: 'auto',
+				centeredSlides: true,
+				centeredSlidesBounds: true,
+				spaceBetween: 12,
+			})
+		})
+	}
+</script>
