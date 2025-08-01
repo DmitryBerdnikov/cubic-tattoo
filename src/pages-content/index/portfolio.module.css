@@ -1,20 +1,28 @@
 .main {
-    padding-top: 120px;
+    padding-top: 40px;
     max-width: 1920px;
     margin: 0 auto;
     overflow: hidden;
+
+    @media (min-width: 768px) {
+        padding-top: 120px;
+    }
 }
 
 .titleContainer {
-    max-width: 1200px;
-    text-align: center;
-    margin: 0 auto 120px;
+    margin-bottom: 40px;
     padding: 0 20px;
+
+    @media (min-width: 768px) {
+        text-align: center;
+        margin: 0 auto 120px;
+    }
 }
 
 .imagesInner {
     @media (min-width: 768px) {
         display: flex;
+        gap: 4px;
         justify-content: center;
         flex-wrap: wrap;
     }
@@ -25,7 +33,7 @@
     width: 90%;
 
     @media (width >= 768px) {
-        width: 25%;
+        width: calc(25% - 3px);
     }
 }
 
@@ -46,7 +54,7 @@
 
 .title {
     margin: 0 0 16px 0;
-    font-size: 24px;
+    font-size: 32px;
 
     @media (width >= 768px) {
         font-size: 36px;
@@ -55,10 +63,14 @@
 
 .text {
     max-width: 440px;
-    margin: 0 auto;
     color: rgba(0, 0, 0, 0.7);
     font-size: 18px;
     line-height: 1.4;
+    margin: 0;
+
+    @media (min-width: 768px) {
+        margin: 0 auto;
+    }
 }
 
 .image {
@@ -67,26 +79,35 @@
     display: block;
     transition: transform 0.6s ease-in-out;
 
-    /* &:hover {
-        transform: scale(1.2);
-    } */
+    @media (min-width: 768px) {
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
 }
 
 .section {
     max-width: 1920px;
     margin: 0 auto;
+    padding: 0 12px;
 
     & + & {
-        margin-top: 80px;
+        margin-top: 40px;
+    }
+
+    @media (min-width: 768px) {
+        & + & {
+            margin-top: 80px;
+        }
     }
 }
 
 .sectionTitle {
-    font-size: 30px;
-    margin: 0 auto 24px auto;
+    font-size: 24px;
     background-color: #000;
     padding: 0 12px 4px 12px;
     width: fit-content;
+    margin: 0 0 24px 0;
 
     &.blackAndWhite {
         background-color: #000;
@@ -97,6 +118,10 @@
         background: linear-gradient(45deg, #ff0055, #ff8800, #ff0088);
         background-size: 300% 300%;
         color: #fff;
+    }
+
+    @media (min-width: 768px) {
+        margin: 0 auto 24px auto;
     }
 }
 
