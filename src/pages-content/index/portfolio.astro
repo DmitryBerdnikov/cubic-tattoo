@@ -265,16 +265,28 @@ const colorWorks = [
 	let currentY = 0
 	let isDragging = false
 	let currentSlideIndex = 0
+	let sliderPositions: number[] = [] // Сохраняем позиции слайдеров
 
 	const slidersContainers = document.querySelectorAll('.portfolio-images')
 
 	const initSliders = () => {
-		slidersContainers.forEach((container) => {
+		// Сохраняем текущие позиции перед уничтожением
+		if (sliders.length > 0) {
+			sliderPositions = sliders.map(slider => slider.activeIndex)
+		}
+
+		// Уничтожаем существующие слайдеры
+		destroySliders()
+
+		slidersContainers.forEach((container, index) => {
 			const slider = new Swiper(container as HTMLElement, {
 				slidesPerView: 'auto',
 				centeredSlides: true,
-				centeredSlidesBounds: true,
+				centeredSlidesBounds: false, // Позволяем слайдам выходить за границы
 				spaceBetween: 8,
+				initialSlide: sliderPositions[index] || 0, // Восстанавливаем позицию
+				watchSlidesProgress: true,
+				preventInteractionOnTransition: true, // Предотвращаем конфликты при переходах
 			})
 
 			sliders.push(slider)
@@ -283,7 +295,9 @@ const colorWorks = [
 
 	const destroySliders = () => {
 		sliders.forEach((slider) => {
-			slider.destroy()
+			if (slider && !slider.destroyed) {
+				slider.destroy(true, true) // Полное уничтожение с очисткой DOM
+			}
 		})
 
 		sliders = []
@@ -316,6 +330,11 @@ const colorWorks = [
 				) as HTMLElement
 
 				if (swiperContainer) {
+					// Уничтожаем предыдущий слайдер если он существует
+					if (popupSwiper && !popupSwiper.destroyed) {
+						popupSwiper.destroy(true, true)
+					}
+
 					popupSwiper = new Swiper(swiperContainer, {
 						modules: [Navigation, Pagination],
 						initialSlide: slideIndex,
@@ -331,12 +350,17 @@ const colorWorks = [
 							enabled: true,
 						},
 						loop: false,
+						preventInteractionOnTransition: true,
 						// Добавляем поддержку свайпов для закрытия
 						on: {
 							slideChange: function (swiper) {
 								// Сохраняем текущий индекс слайда
 								currentSlideIndex = swiper.activeIndex
 							},
+							init: function (swiper) {
+								// Убеждаемся что слайдер инициализирован правильно
+								swiper.update()
+							}
 						},
 					})
 				}
@@ -395,8 +419,8 @@ const colorWorks = [
 		// Уничтожаем слайдер после скрытия
 		setTimeout(() => {
 			// Уничтожение слайдера
-			if (popupSwiper) {
-				popupSwiper.destroy()
+			if (popupSwiper && !popupSwiper.destroyed) {
+				popupSwiper.destroy(true, true)
 				popupSwiper = null
 			}
 
@@ -470,17 +494,22 @@ const colorWorks = [
 		'[data-popup-id="color-works"]'
 	)
 
+	// Инициализация слайдеров при загрузке страницы
 	if (matchMedia('(max-width: 768px)').matches) {
 		initSliders()
 	}
 
 	const resizeHandler = debounce(DEBOUNCE_DELAY, () => {
-		if (matchMedia('(max-width: 768px)').matches) {
+		const isMobile = matchMedia('(max-width: 768px)').matches
+		
+		if (isMobile && sliders.length === 0) {
+			// Инициализируем слайдеры только если их еще нет
 			initSliders()
-			return
+		} else if (!isMobile && sliders.length > 0) {
+			// Уничтожаем слайдеры только при переходе на десктоп
+			destroySliders()
+			sliderPositions = [] // Сбрасываем позиции
 		}
-
-		destroySliders()
 	})
 
 	window.addEventListener('resize', resizeHandler)
