@@ -1,23 +1,4 @@
 ---
-import blackBerserkImage from '../../assets/portfolio/black-berserk.jpg'
-import blackEagle2Image from '../../assets/portfolio/black-eagle-2.jpg'
-import blackEagle3Image from '../../assets/portfolio/black-eagle-3.jpg'
-import blackGargona from '../../assets/portfolio/black-gargona.jpg'
-import blackMedusa from '../../assets/portfolio/black-medusa.jpg'
-import blackGirlCat from '../../assets/portfolio/black-girl-cat.jpg'
-import blackGirlFace from '../../assets/portfolio/black-girl-face.jpg'
-import blackGirlMask from '../../assets/portfolio/black-girl-mask.jpg'
-import blackGirlSmile from '../../assets/portfolio/black-girl-smile.jpg'
-import blackGreece from '../../assets/portfolio/black-greece.jpg'
-import blackNun from '../../assets/portfolio/black-nun.jpg'
-import blackScullBack from '../../assets/portfolio/black-scull-back.jpg'
-import blackWitch from '../../assets/portfolio/black-witch.jpg'
-import colorMask from '../../assets/portfolio/color-mask.jpg'
-import colorOwl from '../../assets/portfolio/color-owl.jpg'
-import colorScull from '../../assets/portfolio/color-scull.jpg'
-import colorNun from '../../assets/portfolio/color-nun.jpg'
-import colorMary from '../../assets/portfolio/color-mary.jpg'
-import colorGirlDemo from '../../assets/portfolio/color-girl-demon.jpg'
 
 import 'swiper/css'
 import styles from './portfolio.module.css'
@@ -25,82 +6,82 @@ import styles from './portfolio.module.css'
 const blackWorks = [
 	{
 		name: 'black-scull-back',
-		image: blackScullBack,
+		src: '/images/portfolio/black-scull-back-full.webp',
 	},
 	{
 		name: 'black-nun',
-		image: blackNun,
+		src: '/images/portfolio/black-nun-full.webp',
 	},
 	{
 		name: 'black-eagle-3',
-		image: blackEagle3Image,
+		src: '/images/portfolio/black-eagle-3-full.webp',
 	},
 	{
 		name: 'black-eagle-2',
-		image: blackEagle2Image,
+		src: '/images/portfolio/black-eagle-2-full.webp',
 	},
 	{
 		name: 'black-gargona',
-		image: blackGargona,
+		src: '/images/portfolio/black-gargona-full.webp',
 	},
 	{
 		name: 'black-medusa',
-		image: blackMedusa,
+		src: '/images/portfolio/black-medusa-full.webp',
 	},
 	{
 		name: 'black-witch',
-		image: blackWitch,
+		src: '/images/portfolio/black-witch-full.webp',
 	},
 	{
 		name: 'black-girl-face',
-		image: blackGirlFace,
+		src: '/images/portfolio/black-girl-face-full.webp',
 	},
 	{
 		name: 'black-girl-cat',
-		image: blackGirlCat,
+		src: '/images/portfolio/black-girl-cat-full.webp',
 	},
 	{
 		name: 'black-berserk',
-		image: blackBerserkImage,
+		src: '/images/portfolio/black-berserk-full.webp',
 	},
 	{
 		name: 'black-girl-mask',
-		image: blackGirlMask,
+		src: '/images/portfolio/black-girl-mask-full.webp',
 	},
 	{
 		name: 'black-greece',
-		image: blackGreece,
+		src: '/images/portfolio/black-greece-full.webp',
 	},
 	{
 		name: 'black-girl-smile',
-		image: blackGirlSmile,
+		src: '/images/portfolio/black-girl-smile-full.webp',
 	},
 ]
 
 const colorWorks = [
 	{
 		name: 'color-scull',
-		image: colorScull,
+		src: '/images/portfolio/color-scull-full.webp',
 	},
 	{
 		name: 'color-owl',
-		image: colorOwl,
+		src: '/images/portfolio/color-owl-full.webp',
 	},
 	{
 		name: 'color-mask',
-		image: colorMask,
+		src: '/images/portfolio/color-mask-full.webp',
 	},
 	{
 		name: 'color-nun',
-		image: colorNun,
+		src: '/images/portfolio/color-nun-full.webp',
 	},
 	{
 		name: 'color-mary',
-		image: colorMary,
+		src: '/images/portfolio/color-mary-full.webp',
 	},
 	{
 		name: 'color-girl-demo',
-		image: colorGirlDemo,
+		src: '/images/portfolio/color-girl-demon-full.webp',
 	},
 ]
 ---
@@ -135,7 +116,7 @@ const colorWorks = [
 						>
 							<img
 								class={styles.image}
-								src={work.image.src}
+								src={work.src}
 								alt=""
 								width="354"
 								height="472"
@@ -176,7 +157,7 @@ const colorWorks = [
 						>
 							<img
 								class={styles.image}
-								src={work.image.src}
+								src={work.src}
 								alt=""
 								width="354"
 								height="472"
@@ -205,7 +186,7 @@ const colorWorks = [
 									<div class="image-wrapper">
 										<div class="loading-spinner" />
 										<img
-											src={work.image.src}
+											src={work.src}
 											alt={work.name}
 											class="popup-image"
 											loading="lazy"
@@ -240,7 +221,7 @@ const colorWorks = [
 									<div class="image-wrapper">
 										<div class="loading-spinner" />
 										<img
-											src={work.image.src}
+											src={work.src}
 											alt={work.name}
 											class="popup-image"
 											loading="lazy"

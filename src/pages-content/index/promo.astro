@@ -1,5 +1,4 @@
 ---
-import promoImage from '../../assets/promo-main.jpg'
 import styles from './promo.module.css'
 ---
 
@@ -7,7 +6,7 @@ import styles from './promo.module.css'
 	<video
 		class={styles.backgroundVideo}
 		id="promo-video"
-		poster={promoImage.src}
+		poster="/images/promo-main-full.webp"
 		autoplay
 		muted
 		loop
@@ -17,7 +16,7 @@ import styles from './promo.module.css'
 	<img
 		class={styles.promoImage}
 		id="promo-image"
-		src={promoImage.src}
+		src="/images/promo-main-full.webp"
 		alt="Promo"
 	/>
 	<div class={styles.overlay}>

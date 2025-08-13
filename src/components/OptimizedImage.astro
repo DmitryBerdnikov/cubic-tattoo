@@ -1,0 +1,74 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number | string;
+  height?: number | string;
+  sizes?: string;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  priority?: boolean;
+  onload?: string;
+  id?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  sizes = '100vw',
+  class: className = '',
+  loading = 'lazy',
+  priority = false,
+  onload,
+  id
+} = Astro.props;
+
+// Извлекаем имя файла без расширения
+const filename = src.split('/').pop()?.split('.')[0];
+const isPortfolio = src.includes('portfolio');
+
+// Формируем пути к оптимизированным изображениям
+const basePath = isPortfolio ? '/images/portfolio/' : '/images/';
+const thumbnailPath = `${basePath}${filename}-thumbnail`;
+const fullPath = `${basePath}${filename}-full`;
+
+// Определяем loading атрибут
+const loadingAttr = priority ? 'eager' : loading;
+---
+
+<picture class={className}>
+  <!-- WebP формат -->
+  <source
+    type="image/webp"
+    srcset={`
+      ${thumbnailPath}.webp 300w,
+      ${fullPath}.webp 1200w
+    `}
+    sizes={sizes}
+  />
+  
+  <!-- JPEG формат как fallback -->
+  <source
+    type="image/jpeg"
+    srcset={`
+      ${thumbnailPath}.jpg 300w,
+      ${fullPath}.jpg 1200w
+    `}
+    sizes={sizes}
+  />
+  
+  <!-- Fallback изображение -->
+  <img
+    src={`${fullPath}.jpg`}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loadingAttr}
+    decoding="async"
+    class={className}
+    onload={onload}
+    id={id}
+  />
+</picture>
