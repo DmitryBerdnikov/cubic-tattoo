@@ -1,3 +1,7 @@
+:root {
+    --swiper-pagination-color: #fff;
+}
+
 html,
 body {
     margin: 0;

@@ -15,57 +15,127 @@ import blackWitch from '../../assets/portfolio/black-witch.jpg'
 import colorMask from '../../assets/portfolio/color-mask.jpg'
 import colorOwl from '../../assets/portfolio/color-owl.jpg'
 import colorScull from '../../assets/portfolio/color-scull.jpg'
+import colorNun from '../../assets/portfolio/color-nun.jpg'
+import colorMary from '../../assets/portfolio/color-mary.jpg'
+import colorGirlDemo from '../../assets/portfolio/color-girl-demon.jpg'
 
 import 'swiper/css'
 import styles from './portfolio.module.css'
 
-const blackImages = [
-	blackScullBack,
-	blackMedusa,
-	blackNun,
-	blackEagle3Image,
-	blackEagle2Image,
-	blackWitch,
-	blackGirlFace,
-	blackGargona,
-	blackBerserkImage,
-	blackGirlCat,
-	blackGirlMask,
-	blackGirlSmile,
-	blackGreece,
+const blackWorks = [
+	{
+		name: 'black-scull-back',
+		image: blackScullBack,
+	},
+	{
+		name: 'black-nun',
+		image: blackNun,
+	},
+	{
+		name: 'black-eagle-3',
+		image: blackEagle3Image,
+	},
+	{
+		name: 'black-eagle-2',
+		image: blackEagle2Image,
+	},
+	{
+		name: 'black-gargona',
+		image: blackGargona,
+	},
+	{
+		name: 'black-medusa',
+		image: blackMedusa,
+	},
+	{
+		name: 'black-witch',
+		image: blackWitch,
+	},
+	{
+		name: 'black-girl-face',
+		image: blackGirlFace,
+	},
+	{
+		name: 'black-girl-cat',
+		image: blackGirlCat,
+	},
+	{
+		name: 'black-berserk',
+		image: blackBerserkImage,
+	},
+	{
+		name: 'black-girl-mask',
+		image: blackGirlMask,
+	},
+	{
+		name: 'black-greece',
+		image: blackGreece,
+	},
+	{
+		name: 'black-girl-smile',
+		image: blackGirlSmile,
+	},
 ]
 
-const colorImages = [colorMask, colorOwl, colorScull]
+const colorWorks = [
+	{
+		name: 'color-scull',
+		image: colorScull,
+	},
+	{
+		name: 'color-owl',
+		image: colorOwl,
+	},
+	{
+		name: 'color-mask',
+		image: colorMask,
+	},
+	{
+		name: 'color-nun',
+		image: colorNun,
+	},
+	{
+		name: 'color-mary',
+		image: colorMary,
+	},
+	{
+		name: 'color-girl-demo',
+		image: colorGirlDemo,
+	},
+]
 ---
 
 <div class={styles.main} id="portfolio">
-	<div class={styles.titleContainer}>
-		<h2 class={styles.title}>Мои работы</h2>
-		<p class={styles.text}>
-			Делаю татуировки, которые будут смотреться хорошо не только сейчас, но и
-			через года
-		</p>
-	</div>
+	<h2 class={styles.title}>Портфолио</h2>
 
-	<div class={styles.section}>
-		<h3 class={styles.sectionTitle + ' ' + styles.blackAndWhite}>
-			Черно-белая татуировка
-		</h3>
+	<div class:list={[styles.section, styles.sectionBlack]}>
+		<div class={styles.sectionTitleContainer}>
+			<div class={styles.sectionTitleContent}>
+				<h3 class={styles.sectionTitle}>Черно-белая татуировка</h3>
+				<p class={styles.sectionSubtitle}>
+					Этот стиль не подвластен времени и трендам. Он&nbsp;выглядит
+					стильно сегодня и остается актуальным спустя годы.
+				</p>
+			</div>
+		</div>
 
 		<div class:list={['portfolio-images', styles.images]}>
 			<div class:list={['swiper-wrapper', styles.imagesInner]}>
 				{
-					blackImages.map((image) => (
+					blackWorks.map((work, index) => (
 						<div
 							class:list={[
 								styles.imageContainer,
+								styles[`imageContainer-${work.name}`],
 								'portfolio-image-slide',
 								'swiper-slide',
 							]}
+							data-section="black-works"
+							data-index={index}
 						>
 							<img
 								class={styles.image}
-								src={image.src}
+								src={work.image.src}
 								alt=""
 								width="354"
 								height="472"
@@ -78,24 +148,35 @@ const colorImages = [colorMask, colorOwl, colorScull]
 		</div>
 	</div>
 
-	<div class={styles.section}>
-		<h3 class={styles.sectionTitle + ' ' + styles.colored}>
-			Цветная татуировка
-		</h3>
+	<div class:list={[styles.section, styles.sectionColor]}>
+		<div class={styles.sectionTitleContainer}>
+			<div class={styles.sectionTitleContent}>
+				<h3 class={styles.sectionTitle + ' ' + styles.colored}>
+					Цветная татуировка
+				</h3>
+				<p class={styles.sectionSubtitle}>
+					Мой основной стиль черно-белый реализм, но иногда по&nbsp;запросу
+					клиентов выполняю цветные татуировки.
+				</p>
+			</div>
+		</div>
 		<div class:list={['portfolio-images', styles.images]}>
 			<div class:list={['swiper-wrapper', styles.imagesInner]}>
 				{
-					colorImages.map((image) => (
+					colorWorks.map((work, index) => (
 						<div
 							class:list={[
 								styles.imageContainer,
+								styles[`imageContainer-${work.name}`],
 								'portfolio-image-slide',
 								'swiper-slide',
 							]}
+							data-section="color-works"
+							data-index={index}
 						>
 							<img
 								class={styles.image}
-								src={image.src}
+								src={work.image.src}
 								alt=""
 								width="354"
 								height="472"
@@ -104,6 +185,77 @@ const colorImages = [colorMask, colorOwl, colorScull]
 						</div>
 					))
 				}
+			</div>
+		</div>
+	</div>
+
+	<!-- Попапы для каждой секции -->
+	<div class="image-popup" data-popup-id="black-works" style="display: none;">
+		<div class="popup-overlay">
+			<div class="popup-content">
+				<button class="popup-close" data-close-popup aria-label="Закрыть">
+					<span class="close-icon"></span>
+				</button>
+
+				<div class="popup-swiper swiper">
+					<div class="swiper-wrapper">
+						{
+							blackWorks.map((work, index) => (
+								<div class="swiper-slide">
+									<div class="image-wrapper">
+										<div class="loading-spinner" />
+										<img
+											src={work.image.src}
+											alt={work.name}
+											class="popup-image"
+											loading="lazy"
+											onload="this.parentElement.classList.add('loaded')"
+										/>
+									</div>
+								</div>
+							))
+						}
+					</div>
+
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="image-popup" data-popup-id="color-works" style="display: none;">
+		<div class="popup-overlay">
+			<div class="popup-content">
+				<button class="popup-close" data-close-popup aria-label="Закрыть">
+					<span class="close-icon"></span>
+				</button>
+
+				<div class="popup-swiper swiper">
+					<div class="swiper-wrapper">
+						{
+							colorWorks.map((work, index) => (
+								<div class="swiper-slide">
+									<div class="image-wrapper">
+										<div class="loading-spinner" />
+										<img
+											src={work.image.src}
+											alt={work.name}
+											class="popup-image"
+											loading="lazy"
+											onload="this.parentElement.classList.add('loaded')"
+										/>
+									</div>
+								</div>
+							))
+						}
+					</div>
+
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-pagination"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -111,17 +263,472 @@ const colorImages = [colorMask, colorOwl, colorScull]
 
 <script>
 	import Swiper from 'swiper'
+	import { Navigation, Pagination } from 'swiper/modules'
+	import { debounce } from 'throttle-debounce'
+	import 'swiper/css/navigation'
+	import 'swiper/css/pagination'
 
-	if (matchMedia('(max-width: 768px)').matches) {
-		const slidersContainers = document.querySelectorAll('.portfolio-images')
+	// Расширяем интерфейс Window для TypeScript
+	declare global {
+		interface Window {
+			openImagePopup: (sectionId: string, initialIndex?: number) => void
+			closeImagePopup: () => void
+		}
+	}
 
+	const DEBOUNCE_DELAY = 200
+
+	let sliders: Swiper[] = []
+	let popupSwiper: Swiper | null = null
+	let startY = 0
+	let currentY = 0
+	let isDragging = false
+	let currentSlideIndex = 0
+
+	const slidersContainers = document.querySelectorAll('.portfolio-images')
+
+	const initSliders = () => {
 		slidersContainers.forEach((container) => {
-			new Swiper(container as HTMLElement, {
+			const slider = new Swiper(container as HTMLElement, {
 				slidesPerView: 'auto',
 				centeredSlides: true,
 				centeredSlidesBounds: true,
-				spaceBetween: 12,
+				spaceBetween: 8,
 			})
+
+			sliders.push(slider)
 		})
 	}
+
+	const destroySliders = () => {
+		sliders.forEach((slider) => {
+			slider.destroy()
+		})
+
+		sliders = []
+	}
+
+	// Функция для открытия попапа
+	function openPopup(sectionId: string, initialIndex: number = 0) {
+		const popup = document.querySelector(
+			`[data-popup-id="${sectionId}"]`
+		) as HTMLElement
+
+		if (!popup) {
+			return
+		}
+
+		// Используем переданный индекс или сохраняем текущий
+		const slideIndex = initialIndex >= 0 ? initialIndex : currentSlideIndex
+
+		popup.style.display = 'block'
+
+		// Небольшая задержка для анимации
+		setTimeout(() => {
+			popup.classList.add('active')
+			popup.classList.remove('closing')
+
+			// Инициализация слайдера с небольшой задержкой
+			setTimeout(() => {
+				const swiperContainer = popup.querySelector(
+					'.popup-swiper'
+				) as HTMLElement
+
+				if (swiperContainer) {
+					popupSwiper = new Swiper(swiperContainer, {
+						modules: [Navigation, Pagination],
+						initialSlide: slideIndex,
+						navigation: {
+							nextEl: '.swiper-button-next',
+							prevEl: '.swiper-button-prev',
+						},
+						pagination: {
+							el: '.swiper-pagination',
+							clickable: true,
+						},
+						keyboard: {
+							enabled: true,
+						},
+						loop: false,
+						// Добавляем поддержку свайпов для закрытия
+						on: {
+							slideChange: function (swiper) {
+								// Сохраняем текущий индекс слайда
+								currentSlideIndex = swiper.activeIndex
+							},
+						},
+					})
+				}
+			}, 100)
+		}, 10)
+
+		// Блокировка скролла
+		document.body.style.overflow = 'hidden'
+
+		// Добавляем обработчики для свайпа вниз
+		addSwipeHandlers(popup)
+	}
+
+	// Функция для добавления обработчиков свайпа
+	function addSwipeHandlers(popup: HTMLElement) {
+		const handleTouchStart = (e: TouchEvent) => {
+			startY = e.touches[0].clientY
+			isDragging = true
+		}
+
+		const handleTouchMove = (e: TouchEvent) => {
+			if (!isDragging) return
+
+			currentY = e.touches[0].clientY
+			const deltaY = currentY - startY
+
+			// Если свайп вниз больше 100px, закрываем попап
+			if (deltaY > 100) {
+				closePopup()
+				isDragging = false
+			}
+		}
+
+		const handleTouchEnd = () => {
+			isDragging = false
+		}
+
+		popup.addEventListener('touchstart', handleTouchStart, { passive: true })
+		popup.addEventListener('touchmove', handleTouchMove, { passive: true })
+		popup.addEventListener('touchend', handleTouchEnd, { passive: true })
+	}
+
+	// Функция для закрытия попапа
+	function closePopup() {
+		const activePopup = document.querySelector(
+			'.image-popup.active'
+		) as HTMLElement
+		if (!activePopup) return
+
+		// Сначала скрываем слайдер и блокируем взаимодействие
+		activePopup.classList.add('closing')
+
+		// Разблокировка скролла
+		document.body.style.overflow = ''
+
+		// Уничтожаем слайдер после скрытия
+		setTimeout(() => {
+			// Уничтожение слайдера
+			if (popupSwiper) {
+				popupSwiper.destroy()
+				popupSwiper = null
+			}
+
+			// Сбрасываем индекс слайда
+			currentSlideIndex = 0
+
+			// Скрываем попап
+			activePopup.classList.remove('active', 'closing')
+			activePopup.style.display = 'none'
+		}, 200)
+	}
+
+	// Обработчик кликов на изображения
+	const handleImageClick = (e: Event) => {
+		const target = e.target as HTMLElement
+
+		// Ищем контейнер изображения (либо сам элемент, либо его родитель)
+		let imageContainer = target.closest('.imageContainer') as HTMLElement
+
+		// Если клик был на изображении, но контейнер не найден, ищем родительский контейнер
+		if (!imageContainer && target.tagName === 'IMG') {
+			imageContainer = target.parentElement as HTMLElement
+		}
+
+		if (!imageContainer) return
+
+		const section = imageContainer.getAttribute('data-section')
+		const index = parseInt(imageContainer.getAttribute('data-index') || '0')
+
+		if (section && typeof window.openImagePopup === 'function') {
+			window.openImagePopup(section, index)
+		}
+	}
+
+	// Обработчики событий для попапа
+	const handlePopupEvents = (e: Event) => {
+		const target = e.target as HTMLElement
+
+		// Закрытие по клику на оверлей
+		if (target.classList.contains('popup-overlay')) {
+			closePopup()
+		}
+
+		// Закрытие по клику на кнопку закрытия
+		if (target.closest('[data-close-popup]')) {
+			closePopup()
+		}
+	}
+
+	// Закрытие по Escape
+	const handleKeydown = (e: KeyboardEvent) => {
+		if (e.key === 'Escape') {
+			closePopup()
+		}
+	}
+
+	// Добавляем обработчики кликов на изображения
+	document.addEventListener('click', handleImageClick)
+	document.addEventListener('click', handlePopupEvents)
+	document.addEventListener('keydown', handleKeydown)
+
+	// Экспорт функций для использования в других скриптах
+	window.openImagePopup = openPopup
+	window.closeImagePopup = closePopup
+
+	// Проверяем наличие попапов в DOM
+	const blackWorksPopup = document.querySelector(
+		'[data-popup-id="black-works"]'
+	)
+	const colorWorksPopup = document.querySelector(
+		'[data-popup-id="color-works"]'
+	)
+
+	if (matchMedia('(max-width: 768px)').matches) {
+		initSliders()
+	}
+
+	const resizeHandler = debounce(DEBOUNCE_DELAY, () => {
+		if (matchMedia('(max-width: 768px)').matches) {
+			initSliders()
+			return
+		}
+
+		destroySliders()
+	})
+
+	window.addEventListener('resize', resizeHandler)
 </script>
+
+<style>
+	.image-popup {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 10000;
+		background-color: rgba(0, 0, 0, 0.95);
+		backdrop-filter: blur(10px);
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.3s ease-in-out;
+	}
+
+	.image-popup.active {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.image-popup.closing {
+		pointer-events: none;
+	}
+
+	.image-popup.closing .popup-swiper {
+		opacity: 0;
+		transform: scale(0.95);
+		transition:
+			opacity 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.image-popup.closing .popup-overlay {
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.popup-overlay {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 20px;
+	}
+
+	.popup-content {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		max-width: 1200px;
+		max-height: 90vh;
+	}
+
+	.popup-close {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		width: 50px;
+		height: 50px;
+		background: rgba(255, 255, 255, 0.1);
+		border: none;
+		border-radius: 50%;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 10;
+		transition: background-color 0.3s ease;
+	}
+
+	.popup-close:hover {
+		background: rgba(255, 255, 255, 0.2);
+	}
+
+	.close-icon {
+		position: relative;
+		width: 20px;
+		height: 20px;
+	}
+
+	.close-icon::before,
+	.close-icon::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background-color: #fff;
+		border-radius: 1px;
+	}
+
+	.close-icon::before {
+		transform: translateY(-50%) rotate(45deg);
+	}
+
+	.close-icon::after {
+		transform: translateY(-50%) rotate(-45deg);
+	}
+
+	.popup-swiper {
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transform: scale(0.95);
+		transition:
+			opacity 0.3s ease,
+			transform 0.3s ease;
+	}
+
+	.image-popup.active .popup-swiper {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	.image-wrapper {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.loading-spinner {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 40px;
+		height: 40px;
+		border: 3px solid rgba(255, 255, 255, 0.3);
+		border-top: 3px solid #fff;
+		border-radius: 50%;
+		animation: spin 1s linear infinite;
+		z-index: 1;
+	}
+
+	.image-wrapper.loaded .loading-spinner {
+		display: none;
+	}
+
+	@keyframes spin {
+		0% {
+			transform: translate(-50%, -50%) rotate(0deg);
+		}
+		100% {
+			transform: translate(-50%, -50%) rotate(360deg);
+		}
+	}
+
+	.popup-image {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		display: block;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.image-wrapper.loaded .popup-image {
+		opacity: 1;
+	}
+
+	.swiper-button-next,
+	.swiper-button-prev {
+		color: #fff;
+		background: rgba(255, 255, 255, 0.1);
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		transition: background-color 0.3s ease;
+	}
+
+	.swiper-button-next:hover,
+	.swiper-button-prev:hover {
+		background: rgba(255, 255, 255, 0.2);
+	}
+
+	.swiper-button-next::after,
+	.swiper-button-prev::after {
+		font-size: 20px;
+	}
+
+	.swiper-pagination {
+		bottom: 20px;
+	}
+
+	.swiper-pagination-bullet {
+		background: rgba(255, 255, 255, 0.5);
+		opacity: 1;
+	}
+
+	.swiper-pagination-bullet-active {
+		background: #fff;
+	}
+
+	@media (max-width: 768px) {
+		.popup-overlay {
+			padding: 10px;
+		}
+
+		.popup-close {
+			top: 10px;
+			right: 10px;
+			width: 40px;
+			height: 40px;
+		}
+
+		.close-icon {
+			width: 16px;
+			height: 16px;
+		}
+
+		.swiper-button-next,
+		.swiper-button-prev {
+			width: 40px;
+			height: 40px;
+		}
+
+		.swiper-button-next::after,
+		.swiper-button-prev::after {
+			font-size: 16px;
+		}
+	}
+</style>

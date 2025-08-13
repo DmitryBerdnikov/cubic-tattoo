@@ -1,0 +1,31 @@
+---
+import aboutImage from '../../assets/about.jpg'
+import styles from './about.module.css'
+---
+
+<div class={styles.main} id="about">
+	<img
+		class={styles.aboutImage}
+		src={aboutImage.src}
+		alt=""
+		width="400"
+		loading="lazy"
+	/>
+	<div class={styles.content}>
+		<h2 class={styles.title}>Привет! Я, Даша Кубик</h2>
+		<p class={styles.text}>
+			Делаю татуировки, которые будут смотреться хорошо не&nbsp;только сейчас,
+			но&nbsp;и через года.
+		</p>
+		<ul class={styles.infoList}>
+			<li class={styles.infoListItem}>Татуирую с 2017 года</li>
+			<li class={styles.infoListItem}>
+				Специализируюсь на черно-белом реализме
+			</li>
+			<li class={styles.infoListItem}>Провожу бесплатную консультацию</li>
+		</ul>
+		<a class={styles.linkTelegram} href="https://t.me/cubic_tattoo"
+			>Написать в telegram</a
+		>
+	</div>
+</div>

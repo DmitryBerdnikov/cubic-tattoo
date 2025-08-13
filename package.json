@@ -9,8 +9,10 @@
 		"astro": "astro"
 	},
 	"dependencies": {
+		"@types/throttle-debounce": "^5.0.2",
 		"astro": "^5.9.2",
 		"masonry-layout": "^4.2.2",
-		"swiper": "^11.2.10"
+		"swiper": "^11.2.10",
+		"throttle-debounce": "^5.0.2"
 	}
 }

@@ -1,40 +1,64 @@
 ---
-import promoImage from '../../assets/promo.jpg'
-import logoImage from '../../assets/logo.png'
+import promoImage from '../../assets/promo-main.jpg'
 import styles from './promo.module.css'
 ---
 
-<div class={styles.main}>
-	<div class={styles.promoImageContainer}>
-		<img
-			class={styles.logo}
-			src={logoImage.src}
-			alt=""
-			fetchpriority="high"
-			width="180"
-			height="172.45"
-		/>
-		<img
-			class={styles.promoImage}
-			src={promoImage.src}
-			alt=""
-			fetchpriority="high"
-			width="420"
-			height="630"
-		/>
-	</div>
-	<div class={styles.greeting}>
-		<header class={styles.header}>
-			<!-- <a class={styles.headerLink} href="/about">Моя история</a> -->
-			<a class={styles.headerLink} href="/#contacts">Контакты</a>
-		</header>
-		<div class={styles.greetingContent}>
-			<p class={styles.greetingText}>Привет! Я, Даша Кубик. Татуирую с 2017 года</p>
-			<h1 class={styles.mainTitle}>
-				Тату мастер из Краснодара. Работаю в стиле черно-белой татуировке,
-				реализм
-			</h1>
-			<a class={styles.link} href="/#portfolio">Посмотреть работы</a>
-		</div>
+<div class={styles.promo}>
+	<video
+		class={styles.backgroundVideo}
+		id="promo-video"
+		poster={promoImage.src}
+		autoplay
+		muted
+		loop
+		playsinline
+	>
+	</video>
+	<img
+		class={styles.promoImage}
+		id="promo-image"
+		src={promoImage.src}
+		alt="Promo"
+	/>
+	<div class={styles.overlay}>
+		<h1 class={styles.mainTitle}>
+			Тату мастер из&nbsp;Краснодара <span class={styles.mainTitleSubtitle}
+				>Работаю в&nbsp;стиле черно-белый реализм</span
+			>
+		</h1>
 	</div>
 </div>
+
+<script>
+	function handleVideoDisplay() {
+		const video = document.getElementById('promo-video') as HTMLVideoElement
+		const image = document.getElementById('promo-image')
+
+		if (window.matchMedia('(min-width: 767px)').matches) {
+			if (video) {
+				if (!video.querySelector('source')) {
+					const source = document.createElement('source')
+					source.src = '/promo.mp4'
+					source.type = 'video/mp4'
+					video.appendChild(source)
+				}
+				video.load()
+				video
+					.play()
+					.catch((e: Error) => console.log('Video autoplay failed:', e))
+			}
+		} else {
+			if (video) {
+				video.pause()
+				const source = video.querySelector('source')
+				if (source) {
+					source.remove()
+				}
+			}
+		}
+	}
+
+	document.addEventListener('DOMContentLoaded', handleVideoDisplay)
+
+	window.addEventListener('resize', handleVideoDisplay)
+</script>

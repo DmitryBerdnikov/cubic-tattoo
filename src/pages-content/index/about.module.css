@@ -1,0 +1,113 @@
+.main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media (min-width: 767px) {
+        flex-direction: row;
+        padding: 120px 24px;
+        min-height: 100vh;
+        align-items: center;
+    }
+}
+
+.aboutImage {
+    height: 500px;
+    object-fit: cover;
+    object-position: center 30%;
+    width: 100%;
+
+    @media (min-width: 767px) {
+        width: 50%;
+        min-height: 550px;
+        max-height: 1200px;
+    }
+}
+
+.content {
+    padding: 24px 0;
+
+    @media (min-width: 767px) {
+        width: 50%;
+        padding: 80px 40px 40px 40px;
+        align-self: start;
+    }
+}
+
+.title {
+    margin: 0 0 16px 0;
+    font-size: 24px;
+
+    @media (min-width: 768px) {
+        font-size: 32px;
+    }
+}
+
+.text {
+    max-width: 420px;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+
+
+    @media (min-width: 768px) {
+        font-size: 18px;
+    }
+}
+
+.infoList {
+    color: rgba(0, 0, 0, 0.7);
+    max-width: 400px;
+    font-size: 16px;
+    line-height: 1.6;
+    list-style: none;
+    padding: 0 0 0 20px;
+    margin: 0 0 24px 0;
+
+    @media (min-width: 768px) {
+        font-size: 18px;
+    }
+}
+
+.infoListItem {
+    position: relative;
+    padding-left: 1.5em;
+    margin-bottom: 12px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.7em;
+        width: 0.4em;
+        height: 0.4em;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+    }
+}
+
+.linkTelegram {
+    background-color: #101110;
+    border: 0;
+    padding: 14px 16px;
+    min-width: 180px;
+    font-size: 14px;
+    color: #fff;
+    display: block;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.6;
+    }
+}

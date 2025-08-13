@@ -1,9 +1,11 @@
 ---
 import '../styles/global.css'
+import styles from './main-layout.module.css'
+import TelegramIcon from '../assets/telegram.svg'
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -21,6 +23,169 @@ import '../styles/global.css'
 		/>
 	</head>
 	<body>
+		<header class={styles.header} id="header">
+			<img
+				src="/logo.png"
+				alt="Логотип"
+				class={styles.logo}
+				width="60"
+				height="67"
+				fetchpriority="high"
+			/>
+			<div class={styles.headerNavContainer}>
+				<nav class:list={[styles.headerNav, 'header-nav']}>
+					<a class={styles.headerLink} href="/#about">Обо мне</a>
+					<a class={styles.headerLink} href="/#portfolio">Портфолио</a>
+					<a class={styles.headerLink} href="/#contacts">Контакты</a>
+					<a
+						class={styles.telegramLink}
+						href="https://t.me/cubic_tattoo"
+						target="_blank"
+					>
+						<img
+							class={styles.telegramIcon}
+							src={TelegramIcon.src}
+							alt="Написать в телеграм"
+							width="24"
+							height="24"
+						/>
+					</a>
+				</nav>
+				<button
+					class={styles.mobileMenuBtn}
+					id="mobileMenuButtonOpen"
+					aria-label="Открыть меню"
+				>
+					<span class={styles.hamburgerLine}></span>
+					<span class={styles.hamburgerLine}></span>
+					<span class={styles.hamburgerLine}></span>
+				</button>
+			</div>
+		</header>
+
+		<div class={styles.mobileMenuOverlay} id="mobileMenuOverlay">
+			<div class={styles.mobileMenuContent}>
+				<div class={styles.mobileMenuHeader}>
+					<img
+						src="/logo.png"
+						alt="Логотип"
+						class={styles.mobileLogo}
+						width="60"
+						height="67"
+					/>
+
+					<div class={styles.mobileMenuHeaderActions}>
+						<a
+							class={styles.telegramLink}
+							href="https://t.me/cubic_tattoo"
+							target="_blank"
+						>
+							<img
+								class={styles.telegramIcon}
+								src={TelegramIcon.src}
+								alt="Написать в телеграм"
+								width="24"
+								height="24"
+							/>
+						</a>
+
+						<button
+							class={styles.closeBtn}
+							id="mobileMenuCloseButton"
+							aria-label="Закрыть меню"
+						>
+							<span class={styles.closeIcon}></span>
+						</button>
+					</div>
+				</div>
+				<nav class={styles.mobileMenuNav}>
+					<a class={styles.mobileMenuLink} data-mobile-menu-link href="/#about"
+						>Обо мне</a
+					>
+					<a
+						class={styles.mobileMenuLink}
+						data-mobile-menu-link
+						href="/#portfolio">Портфолио</a
+					>
+					<a
+						class={styles.mobileMenuLink}
+						data-mobile-menu-link
+						href="/#contacts">Контакты</a
+					>
+				</nav>
+			</div>
+		</div>
+
 		<slot />
 	</body>
 </html>
+
+<script>
+	let lastScrollTop = 0
+	let scrollThreshold = 100
+
+	const header = document.getElementById('header')
+
+	if (header) {
+		function scrollHandler() {
+			const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+
+			if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+				header!.removeAttribute('header-visible')
+			} else {
+				header!.setAttribute('header-visible', 'true')
+			}
+
+			if (scrollTop > 50) {
+				header!.setAttribute('header-scrolled', 'true')
+			} else {
+				header!.removeAttribute('header-scrolled')
+			}
+
+			lastScrollTop = scrollTop
+		}
+
+		header!.classList.add('header-visible')
+		window.addEventListener('scroll', scrollHandler, { passive: true })
+	}
+
+	const mobileMenuButtonOpen = document.getElementById('mobileMenuButtonOpen')
+	const mobileMenuOverlay = document.getElementById('mobileMenuOverlay')
+	const mobileMenuButtonClose = document.getElementById('mobileMenuCloseButton')
+
+	if (mobileMenuButtonOpen && mobileMenuOverlay && mobileMenuButtonClose) {
+		function openMenu() {
+			document.body.style.overflow = 'hidden'
+			mobileMenuOverlay!.setAttribute('data-mobile-menu-open', 'true')
+		}
+
+		function closeMenu() {
+			document.body.style.overflow = ''
+			mobileMenuOverlay!.removeAttribute('data-mobile-menu-open')
+		}
+
+		mobileMenuButtonOpen.addEventListener('click', openMenu)
+		mobileMenuButtonClose.addEventListener('click', closeMenu)
+
+		mobileMenuOverlay.addEventListener('click', (e) => {
+			if (e.target === mobileMenuOverlay) {
+				closeMenu()
+			}
+		})
+
+		document.addEventListener('keydown', (e) => {
+			if (
+				e.key === 'Escape' &&
+				mobileMenuOverlay.getAttribute('data-mobile-menu-open') === 'true'
+			) {
+				closeMenu()
+			}
+		})
+
+		const mobileMenuLinks = document.querySelectorAll('[data-mobile-menu-link]')
+
+		mobileMenuLinks.forEach((link) => {
+			link.addEventListener('click', closeMenu)
+		})
+	}
+</script>

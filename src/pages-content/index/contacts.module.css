@@ -64,6 +64,31 @@
     }
 }
 
+.linkInstagram {
+    background-color: #fff;
+    border: 1px solid #101110;
+    padding: 14px 16px;
+    min-width: 180px;
+    font-size: 14px;
+    color: #101110;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+    &:hover {
+        opacity: 0.8;
+        background-color: #101110;
+        color: #fff;
+    }
+
+    &:active {
+        opacity: 0.6;
+    }
+}
+
 .linkWhatsapp {
     background-color: #fff;
     padding: 14px 16px;

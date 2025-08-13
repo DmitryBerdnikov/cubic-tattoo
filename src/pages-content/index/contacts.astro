@@ -1,5 +1,4 @@
 ---
-import logoImage from '../../assets/logo.png'
 import styles from './contacts.module.css'
 ---
 
@@ -7,7 +6,7 @@ import styles from './contacts.module.css'
 	<div class={styles.content}>
 		<img
 			class={styles.logo}
-			src={logoImage.src}
+			src="/logo.png"
 			alt=""
 			width="180"
 			height="172.45"
@@ -18,10 +17,11 @@ import styles from './contacts.module.css'
 			Бесплатно проконсультирую по&nbsp;любым вопросам татуировки
 		</p>
 		<div class={styles.links}>
-			<a
-				class={styles.linkTelegram}
-				href="https://t.me/cubic_tattoo"
+			<a class={styles.linkTelegram} href="https://t.me/cubic_tattoo"
 				>Написать в telegram</a
+			>
+			<a class={styles.linkInstagram} href="https://www.instagram.com/cubic_tattoo"
+				>Instagram @cubic_tattoo</a
 			>
 		</div>
 	</div>

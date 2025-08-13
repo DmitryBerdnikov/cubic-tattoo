@@ -3,26 +3,16 @@
     max-width: 1920px;
     margin: 0 auto;
     overflow: hidden;
-
-    @media (min-width: 768px) {
-        padding-top: 120px;
-    }
-}
-
-.titleContainer {
-    margin-bottom: 40px;
     padding: 0 20px;
 
     @media (min-width: 768px) {
-        text-align: center;
-        margin: 0 auto 120px;
+        padding: 0;
     }
 }
 
 .imagesInner {
     @media (min-width: 768px) {
         display: flex;
-        gap: 4px;
         justify-content: center;
         flex-wrap: wrap;
     }
@@ -30,10 +20,17 @@
 
 .imageContainer {
     overflow: hidden;
-    width: 90%;
+    width: 100%;
+    cursor: pointer;
 
     @media (width >= 768px) {
-        width: calc(25% - 3px);
+        width: 25%;
+    }
+}
+
+.imageContainer:first-child {
+    @media (min-width: 768px) {
+        margin-left: 50%;
     }
 }
 
@@ -57,19 +54,44 @@
     font-size: 32px;
 
     @media (width >= 768px) {
-        font-size: 36px;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
     }
 }
 
-.text {
+.sectionSubtitle {
     max-width: 440px;
     color: rgba(0, 0, 0, 0.7);
-    font-size: 18px;
-    line-height: 1.4;
+    font-size: 16px;
+    line-height: 1.5;
     margin: 0;
+    text-wrap: pretty;
 
+    @media (width >= 768px) {
+        font-size: 18px;
+    }
+}
+
+.imageContainer-black-girl-smile {
     @media (min-width: 768px) {
-        margin: 0 auto;
+        display: none;
+    }
+}
+
+.imageContainer-black-greece {
+    @media (min-width: 768px) {
+        display: none;
+    }
+}
+
+.imageContainer-black-girl-cat {
+    @media (min-width: 768px) {
+        display: none;
     }
 }
 
@@ -78,6 +100,7 @@
     width: 100%;
     display: block;
     transition: transform 0.6s ease-in-out;
+    cursor: pointer;
 
     @media (min-width: 768px) {
         &:hover {
@@ -87,9 +110,9 @@
 }
 
 .section {
+    position: relative;
     max-width: 1920px;
     margin: 0 auto;
-    padding: 0 12px;
 
     & + & {
         margin-top: 40px;
@@ -97,42 +120,45 @@
 
     @media (min-width: 768px) {
         & + & {
-            margin-top: 80px;
+            margin-top: 0;
         }
+    }
+}
+
+
+.sectionTitleContainer {
+    margin-bottom: 32px;
+
+    @media (min-width: 768px) {
+        left: 0;
+        margin-bottom: 0;
+        position: absolute;
+        aspect-ratio: 864 / 573;
+        z-index: 2;
+        width: 50%;
+        max-width: 960px;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+.sectionTitleContent {
+    @media (width >= 768px) {
+        max-width: 100%;
+        margin: 0 auto;
+        width: 520px;
     }
 }
 
 .sectionTitle {
     font-size: 24px;
-    background-color: #000;
-    padding: 0 12px 4px 12px;
     width: fit-content;
-    margin: 0 0 24px 0;
+    margin: 0 0 16px 0;
 
-    &.blackAndWhite {
-        background-color: #000;
-        color: #fff;
-    }
-
-    &.colored {
-        background: linear-gradient(45deg, #ff0055, #ff8800, #ff0088);
-        background-size: 300% 300%;
-        color: #fff;
-    }
-
-    @media (min-width: 768px) {
-        margin: 0 auto 24px auto;
+    @media (width >= 768px) {
+        font-size: 32px;
     }
 }
 
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
