@@ -13,18 +13,29 @@ import styles from './promo.module.css'
 		playsinline
 	>
 	</video>
-	<img
-		class={styles.promoImage}
-		id="promo-image"
-		src="/images/promo-main-full.webp"
-		alt="Promo"
-	/>
+	<img id="promo-image" src="/images/promo-main-full.webp" alt="Promo" />
+	<picture>
+		<source media="(min-width: 768px)" srcset="/images/promo-main-full.webp" />
+		<source
+			media="(max-width: 767px)"
+			srcset="/images/promo-main-mobile-full.webp"
+		/>
+		<img
+			class={styles.promoImage}
+			id="promo-image"
+			src="/images/promo-main-full.webp"
+			alt="Фото Даши Кубик"
+		/>
+	</picture>
 	<div class={styles.overlay}>
 		<h1 class={styles.mainTitle}>
 			Тату мастер из&nbsp;Краснодара <span class={styles.mainTitleSubtitle}
 				>Работаю в&nbsp;стиле черно-белый реализм</span
 			>
 		</h1>
+		<a class={styles.button} href="/#portfolio"
+			>Посмотреть работы</a
+		>
 	</div>
 </div>
 

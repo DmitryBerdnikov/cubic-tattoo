@@ -28,6 +28,11 @@
     }
 }
 
+.logo {
+    width: 50px;
+    height: 56px;
+}
+
 .headerNav {
     display: flex;
     gap: 24px;
